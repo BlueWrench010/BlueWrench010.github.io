@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentinsdag ❤️</title>
+    <style>
+        body {
+            background-color: #ffcce0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+        
+        h1 {
+            margin-top: 50px;
+            font-size: 24px;
+            color: #d1477b;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .yes {
+            background-color: #ff66a3;
+            color: white;
+        }
+
+        .no {
+            background-color: #ff3366;
+            color: white;
+            position: absolute;
+        }
+
+        .hidden {
+            display: none;
+            font-size: 20px;
+            color: #d1477b;
+            margin-top: 20px;
+        }
+
+        /* Ramen balloon animation */
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 1; }
+        }
+
+        .ramen {
+            position: absolute;
+            width: 50px;
+            animation: float 6s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Vil du være min valentin Nina?🙏 (prøv også at klikke på nej for sjov)</h1>
+    
+    <div class="container">
+        <button class="btn yes" onclick="sayYes()">Ja</button>
+        <button class="btn no" onmouseover="moveNo()">Nej</button>
+    </div>
+
+    <p class="hidden" id="yesMessage">Yesss fedt vidste du ville sige ja :)</p>
+
+    <script>
+        function sayYes() {
+            document.getElementById("yesMessage").style.display = "block";
+        }
+
+        function moveNo() {
+            let btn = document.querySelector(".no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = x + "px";
+            btn.style.top = y + "px";
+        }
+
+        // Generate floating ramen bowls
+        function createRamen() {
+            const ramen = document.createElement("img");
+            ramen.src = "https://cdn-icons-png.flaticon.com/512/2718/2718224.png"; // Ramen bowl icon
+            ramen.classList.add("ramen");
+            ramen.style.left = Math.random() * window.innerWidth + "px";
+            ramen.style.animationDuration = 4 + Math.random() * 3 + "s"; // Random float speed
+            document.body.appendChild(ramen);
+
+            setTimeout(() => {
+                ramen.remove();
+            }, 6000);
+        }
+
+        setInterval(createRamen, 1000);
+    </script>
+
+</body>
+</html>
